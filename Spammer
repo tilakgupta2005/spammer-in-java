@@ -1,0 +1,40 @@
+import java.util.Scanner;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
+import java.awt.Toolkit;
+import java.awt.AWTException;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
+
+public class Spammer
+  {
+  public static void main(String[] args) throws AWTException,InterruptedException
+    {
+      Scanner sc = new Scanner(System.in);
+      System.out.println("Enter your text");
+      String text = sc.nextLine();
+      System.out.println("No of times you want to send msg");
+      int n = sc.nextInt();
+      sc.close();
+
+      System.out.println("Message sending will start in 10 sec...");
+
+      StringSelection stringSelection = new StringSelection(text);
+      Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+      clipboard.setContents(stringSelection, null);
+
+      Thread.sleep(10000);
+
+      Robot robot = new Robot();
+      for(int i = 0; i <= n; i++)
+      {
+        robot.keyPress(KeyEvent.VK_CONTROL);
+        robot.keyPress(KeyEvent.VK_V);
+        robot.keyRelease(KeyEvent.VK_CONTROL);
+        robot.keyRelease(KeyEvent.VK_V);
+        robot.keyPress(KeyEvent.VK_ENTER);
+        robot.keyRelease(KeyEvent.VK_ENTER);
+        Thread.sleep(3000);
+     }
+    }
+  }
